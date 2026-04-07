@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a1e3d"/>
+  <rect x="60" y="60" width="1080" height="510" rx="12" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <text x="100" y="250" font-family="system-ui,sans-serif" font-size="72" font-weight="700" fill="white">Value DataCenter</text>
+  <text x="100" y="340" font-family="system-ui,sans-serif" font-size="72" font-weight="700" fill="white">Solutions</text>
+  <text x="100" y="420" font-family="system-ui,sans-serif" font-size="28" fill="rgba(255,255,255,0.6)">Soluciones tecnologicas para Centro America</text>
+  <rect x="100" y="470" width="60" height="4" fill="white"/>
+  <text x="100" y="520" font-family="system-ui,sans-serif" font-size="20" fill="rgba(255,255,255,0.4)">vdstecnologia.com</text>
+</svg>

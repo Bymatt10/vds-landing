@@ -1,0 +1,201 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: string;
+}
+
+const {
+  title,
+  description = 'Value Driven Solutions - Soluciones tecnologicas de vanguardia para Centro America. Migracion a la nube, ciberseguridad, Microsoft 365, consultoria TI y soporte 24/7.',
+  image = '/og-image.png',
+  type = 'website',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(image, Astro.site);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Value Driven Solutions',
+  url: 'https://vdstecnologia.com',
+  description: description,
+  areaServed: [
+    { '@type': 'Country', name: 'Costa Rica' },
+    { '@type': 'Country', name: 'El Salvador' },
+    { '@type': 'Country', name: 'Nicaragua' },
+    { '@type': 'Country', name: 'Guatemala' },
+  ],
+  serviceType: [
+    'Cloud Migration',
+    'Microsoft 365',
+    'Cybersecurity',
+    'IT Consulting',
+    'Data Protection',
+    'Datacenter Infrastructure',
+    'Networks and Telecommunications',
+    'IT Training',
+    '24/7 Technical Support',
+  ],
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Value Driven Solutions" />
+    <meta name="keywords" content="soluciones tecnologicas, centro america, migracion nube, ciberseguridad, Microsoft 365, consultoria TI, datacenter, soporte tecnico, Costa Rica, El Salvador, Nicaragua, Guatemala" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:site_name" content="Value Driven Solutions" />
+    <meta property="og:locale" content="es_CR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- JSON-LD Structured Data -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  </head>
+  <body>
+    <slot />
+    <style is:global>
+      :root {
+        --font-main: 'Inter', 'InterVariable', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        --font-heading: 'Inter', 'InterDisplay', var(--font-main);
+        --color-bg: #ffffff;
+        --color-bg-elevated: #f8f9fa;
+        --color-bg-card: #ffffff;
+        --color-primary: #0a1e3d;
+        --color-primary-light: #142d54;
+        --color-accent: #1a3a6b;
+        --color-accent-light: #2451a0;
+        --color-text: #111827;
+        --color-text-muted: #4b5563;
+        --color-text-heading: #111827;
+        --color-border: #e5e7eb;
+        --color-gradient-start: #0a1e3d;
+        --color-gradient-end: #1a3a6b;
+        --max-width: 1200px;
+        --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      @supports (font-variation-settings: normal) {
+        :root {
+          --font-main: 'InterVariable', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+      }
+
+      html {
+        scroll-behavior: smooth;
+        text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      }
+
+      body {
+        font-family: var(--font-main);
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.5;
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+        font-variation-settings: "opsz" 32;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        line-height: 1.2;
+        color: var(--color-text-heading);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .section {
+        padding: 5rem 0;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 1rem;
+        color: var(--color-text-heading);
+      }
+
+      .section-subtitle {
+        text-align: center;
+        color: var(--color-text-muted);
+        font-size: 1.125rem;
+        max-width: 600px;
+        margin: 0 auto 3rem;
+      }
+
+      @media (max-width: 768px) {
+        .section {
+          padding: 3rem 0;
+        }
+
+        .section-title {
+          font-size: 1.75rem;
+        }
+      }
+    </style>
+  </body>
+</html>

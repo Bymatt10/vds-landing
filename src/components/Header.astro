@@ -1,0 +1,176 @@
+---
+const navLinks = [
+  { href: '/', label: 'Inicio' },
+  { href: '/productos-y-servicios', label: 'Productos y Servicios' },
+  { href: '/#nosotros', label: 'Nosotros' },
+  { href: '/#ubicaciones', label: 'Ubicaciones' },
+  { href: '/#contacto', label: 'Contacto' },
+];
+---
+
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">VDS</span>
+      <span class="logo-text">Value Driven Solutions</span>
+    </a>
+
+    <nav class="nav" id="nav">
+      {navLinks.map((link) => (
+        <a href={link.href} class="nav-link">{link.label}</a>
+      ))}
+    </nav>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1rem 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--color-border);
+    transition: box-shadow var(--transition);
+  }
+
+  .header.scrolled {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .logo-icon {
+    background: var(--color-primary);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .logo-text {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text-heading);
+  }
+
+  .nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    transition: color var(--transition);
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: width var(--transition);
+  }
+
+  .nav-link:hover {
+    color: var(--color-text-heading);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text-heading);
+    transition: var(--transition);
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: flex;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: #ffffff;
+      flex-direction: column;
+      padding: 5rem 2rem 2rem;
+      gap: 1.5rem;
+      transition: right var(--transition);
+      border-left: 1px solid var(--color-border);
+      box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav.open {
+      right: 0;
+    }
+
+    .nav-link {
+      font-size: 1.1rem;
+      color: var(--color-text-heading);
+    }
+  }
+</style>
+
+<script>
+  const header = document.getElementById('header');
+  const nav = document.getElementById('nav');
+  const toggle = document.getElementById('menu-toggle');
+
+  window.addEventListener('scroll', () => {
+    header?.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  toggle?.addEventListener('click', () => {
+    nav?.classList.toggle('open');
+  });
+
+  nav?.querySelectorAll('.nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+    });
+  });
+</script>

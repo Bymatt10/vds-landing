@@ -1,0 +1,212 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const services = [
+  {
+    title: 'Consumo y Migracion a la Nube',
+    description: 'Facilitamos la transicion a infraestructura en la nube, ayudando a las empresas a aprovechar la tecnologia moderna mientras mantenemos la seguridad y accesibilidad de los datos. Guiamos a nuestros clientes a traves de las fases de planificacion y ejecucion.',
+  },
+  {
+    title: 'Licenciamiento y Servicios M365',
+    description: 'Soluciones integrales para la gestion y optimizacion de licenciamiento de Microsoft 365. Nuestros servicios mejoran la seguridad, simplifican la administracion, mejoran la colaboracion y maximizan el uso de herramientas de productividad.',
+  },
+  {
+    title: 'CiberSeguridad Avanzada',
+    description: 'Proteccion de datos a traves de servicios avanzados de ciberseguridad que resguardan su infraestructura contra amenazas. Ofrecemos auditorias, implementacion de medidas de seguridad y programas de capacitacion para el personal.',
+  },
+  {
+    title: 'Formacion en TI y Capacitacion',
+    description: 'Programas de capacitacion personalizados que van desde nivel basico hasta avanzado. Aseguramos que su personal se mantenga actualizado con las tendencias de la industria y tecnologias emergentes.',
+  },
+  {
+    title: 'Consultoria en Tecnologia',
+    description: 'Servicios de consultoria estrategica que analizan las necesidades organizacionales y disenan planes de implementacion alineados. Nos enfocamos en la optimizacion de procesos y el despliegue eficiente de soluciones.',
+  },
+  {
+    title: 'Proteccion de Datos',
+    description: 'Soluciones avanzadas para proteger datos en nubes publicas y centros de datos. Garantizamos seguridad, continuidad operativa y cumplimiento normativo utilizando tecnologia de vanguardia.',
+  },
+  {
+    title: 'Infraestructura Centros de Datos',
+    description: 'Soluciones que utilizan las marcas lideres del mercado para infraestructura de centros de datos. Enfasis en rendimiento, escalabilidad y seguridad con soporte experto y sistemas preparados para el futuro.',
+  },
+  {
+    title: 'Redes y Telecomunicaciones',
+    description: 'Soluciones avanzadas de conectividad que ofrecen sistemas de red seguros, rapidos y escalables para empresas que buscan optimizar su comunicacion y rendimiento.',
+  },
+  {
+    title: 'Soporte Tecnico 24/7',
+    description: 'Soporte tecnico continuo disponible las 24 horas para resolver problemas de infraestructura. Los servicios incluyen asistencia remota y presencial.',
+  },
+];
+---
+
+<Layout
+  title="Productos y Servicios de TI | VDS - Value Driven Solutions"
+  description="Migracion a la nube, Microsoft 365, ciberseguridad avanzada, consultoria tecnologica, proteccion de datos, infraestructura datacenter, redes y soporte tecnico 24/7 en Centro America."
+>
+  <Header />
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1 class="page-title">Productos y Servicios de TI</h1>
+        <p class="page-subtitle">
+          Soluciones integrales de tecnologia para impulsar la transformacion digital de su empresa
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="services-list">
+          {services.map((service, i) => (
+            <div class="service-item">
+              <div class="service-number">{String(i + 1).padStart(2, '0')}</div>
+              <div class="service-content">
+                <h2 class="service-title">{service.title}</h2>
+                <p class="service-description">{service.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <h2 class="cta-title">Listo para transformar su infraestructura?</h2>
+          <p class="cta-text">Contactenos para una consulta gratuita con nuestro equipo de especialistas.</p>
+          <a href="/#contacto" class="cta-btn">Contactenos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--color-primary);
+    padding: 10rem 0 4rem;
+  }
+
+  .page-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+  }
+
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .service-item {
+    display: flex;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+    align-items: flex-start;
+  }
+
+  .service-item:last-child {
+    border-bottom: none;
+  }
+
+  .service-number {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    opacity: 0.5;
+    flex-shrink: 0;
+    padding-top: 0.25rem;
+  }
+
+  .service-content {
+    flex: 1;
+  }
+
+  .service-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-heading);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-description {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    max-width: 700px;
+  }
+
+  .cta-section {
+    padding: 5rem 0;
+  }
+
+  .cta-box {
+    background: var(--color-primary);
+    border-radius: 8px;
+    padding: 4rem;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
+
+  .cta-text {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    background: #ffffff;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .service-item {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .cta-box {
+      padding: 2.5rem 1.5rem;
+    }
+
+    .cta-title {
+      font-size: 1.5rem;
+    }
+  }
+</style>

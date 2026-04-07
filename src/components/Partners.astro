@@ -1,0 +1,133 @@
+---
+const partners = [
+  {
+    name: 'AWS',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg',
+  },
+  {
+    name: 'Microsoft',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
+  },
+  {
+    name: 'Google Cloud',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg',
+  },
+  {
+    name: 'Nutanix',
+    logo: '/logos/nutanix.svg',
+  },
+  {
+    name: 'VMware',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Vmware.svg',
+  },
+  {
+    name: 'Red Hat',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d8/Red_Hat_logo.svg',
+  },
+  {
+    name: 'Veeam',
+    logo: '/logos/veeam.svg',
+  },
+  {
+    name: 'HPE',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/4/46/Hewlett_Packard_Enterprise_logo.svg',
+  },
+  {
+    name: 'Dell Technologies',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/8/82/Dell_Logo.png',
+  },
+  {
+    name: 'Cisco',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg',
+  },
+  {
+    name: 'ExaGrid',
+    logo: '/logos/exagrid.svg',
+  },
+];
+---
+
+<section class="section partners" id="alianzas">
+  <div class="container">
+    <h2 class="section-title">
+      Nuestras <span class="gradient-text">Alianzas</span>
+    </h2>
+    <p class="section-subtitle">
+      Trabajamos con las marcas lideres del mercado para ofrecer soluciones de clase mundial
+    </p>
+
+    <div class="partners-grid">
+      {partners.map((partner) => (
+        <div class="partner-card">
+          <img
+            src={partner.logo}
+            alt={partner.name}
+            class="partner-logo"
+            loading="lazy"
+          />
+          <span class="partner-name">{partner.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .partners {
+    background: var(--color-bg-elevated);
+  }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .partner-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 1.5rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    transition: all var(--transition);
+    min-height: 140px;
+  }
+
+  .partner-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-primary);
+    box-shadow: 0 12px 40px rgba(10, 30, 61, 0.08);
+  }
+
+  .partner-logo {
+    max-width: 120px;
+    max-height: 40px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .partner-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 1024px) {
+    .partners-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .partners-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

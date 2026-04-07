@@ -1,0 +1,149 @@
+---
+const pillars = [
+  {
+    title: 'Equipo',
+    description: 'Somos un grupo de profesionales multinacionales y multidisciplinarios, especializados en brindar soluciones tecnologicas de vanguardia a nuestros clientes.',
+  },
+  {
+    title: 'Experiencia',
+    description: 'Nos especializamos en las marcas lideres del mercado incluyendo AWS, Microsoft, Google, Nutanix, VMware, RedHat, Veeam, HPE, DELL, Cisco y Exagrid.',
+  },
+  {
+    title: 'Presencia Regional',
+    description: 'Contamos con especialistas en servicios en toda la region de Centro America, brindando soporte local con experiencia global.',
+  },
+];
+---
+
+<section class="section about" id="nosotros">
+  <div class="container">
+    <h2 class="section-title">
+      Sobre <span class="gradient-text">Nosotros</span>
+    </h2>
+    <p class="section-subtitle">
+      Tres pilares que definen nuestra organizacion y compromiso con la excelencia tecnologica
+    </p>
+
+    <div class="pillars-grid">
+      {pillars.map((pillar) => (
+        <div class="pillar-card">
+          <div class="pillar-line"></div>
+          <h3 class="pillar-title">{pillar.title}</h3>
+          <p class="pillar-description">{pillar.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Paises</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number">10+</span>
+        <span class="stat-label">Partners Tecnologicos</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number">24/7</span>
+        <span class="stat-label">Soporte</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number">9</span>
+        <span class="stat-label">Lineas de Servicio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--color-bg-elevated);
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .pillar-card {
+    padding: 2.5rem 2rem;
+  }
+
+  .pillar-line {
+    width: 40px;
+    height: 3px;
+    background: var(--color-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .pillar-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-text-heading);
+    margin-bottom: 0.75rem;
+  }
+
+  .pillar-description {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .stats-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    padding: 2.5rem;
+    background: var(--color-primary);
+    border-radius: 8px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.25rem;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .pillars-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .stats-bar {
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .stat-divider {
+      display: none;
+    }
+
+    .stat {
+      flex: 1 0 40%;
+    }
+  }
+</style>

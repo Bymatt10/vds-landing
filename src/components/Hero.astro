@@ -1,0 +1,188 @@
+---
+
+---
+
+<section class="hero" id="inicio">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+  </div>
+  <div class="container hero-content">
+    <p class="hero-badge">Soluciones Tecnologicas para Centro America</p>
+    <h1 class="hero-title">
+      Bienvenido a<br />
+      <span class="gradient-text">Value Driven Solutions</span>
+    </h1>
+    <p class="hero-description">
+      Somos un grupo de profesionales multinacionales y multidisciplinarios,
+      especializados en brindar soluciones tecnologicas de vanguardia para
+      impulsar la transformacion digital de su empresa.
+    </p>
+    <div class="hero-actions">
+      <a href="#servicios" class="btn btn-primary">Nuestros Servicios</a>
+      <a href="#contacto" class="btn btn-outline">Contactenos</a>
+    </div>
+    <div class="hero-brands">
+      <span class="brands-label">Partners tecnologicos</span>
+      <div class="brands-list">
+        {['AWS', 'Microsoft', 'Google', 'Nutanix', 'VMware', 'RedHat', 'Veeam', 'HPE', 'DELL', 'Cisco'].map((brand) => (
+          <span class="brand-tag">{brand}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--color-primary);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 8rem 1.5rem 4rem;
+    max-width: 800px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title .gradient-text {
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: #ffffff;
+    background-clip: unset;
+  }
+
+  .hero-description {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 600px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8rem 1.8rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all var(--transition);
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: #ffffff;
+    color: var(--color-primary);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-outline {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    background: transparent;
+  }
+
+  .btn-outline:hover {
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .hero-brands {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 2rem;
+  }
+
+  .brands-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .brands-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .brand-tag {
+    padding: 0.35rem 0.8rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.25rem;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+    }
+
+    .btn {
+      text-align: center;
+      justify-content: center;
+    }
+  }
+</style>

@@ -1,0 +1,134 @@
+---
+const services = [
+  {
+    title: 'Migracion a la Nube',
+    description: 'Facilitamos transiciones fluidas a infraestructura en la nube con enfoque en la seguridad de los datos y continuidad operativa.',
+  },
+  {
+    title: 'Microsoft 365',
+    description: 'Soluciones completas de licenciamiento y gestion que optimizan el rendimiento y la seguridad de su entorno de trabajo.',
+  },
+  {
+    title: 'Ciberseguridad Avanzada',
+    description: 'Auditorias, implementaciones de seguridad y capacitacion de equipos para proteger contra amenazas ciberneticas.',
+  },
+  {
+    title: 'Capacitacion en TI',
+    description: 'Programas personalizados desde nivel basico hasta avanzado, cubriendo las ultimas tendencias de la industria.',
+  },
+  {
+    title: 'Consultoria Tecnologica',
+    description: 'Analisis estrategico e implementacion alineando la tecnologia con los objetivos de su negocio.',
+  },
+  {
+    title: 'Proteccion de Datos',
+    description: 'Soluciones en la nube y datacenter que garantizan seguridad, continuidad y cumplimiento normativo.',
+  },
+  {
+    title: 'Infraestructura Datacenter',
+    description: 'Soluciones avanzadas de fabricantes lideres del mercado, con enfasis en rendimiento y escalabilidad.',
+  },
+  {
+    title: 'Redes y Telecomunicaciones',
+    description: 'Soluciones de conectividad seguras, rapidas y escalables para la comunicacion empresarial.',
+  },
+  {
+    title: 'Soporte Tecnico 24/7',
+    description: 'Asistencia disponible las 24 horas, los 7 dias de la semana, de forma remota o presencial.',
+  },
+];
+---
+
+<section class="section services" id="servicios">
+  <div class="container">
+    <h2 class="section-title">
+      Nuestros <span class="gradient-text">Servicios</span>
+    </h2>
+    <p class="section-subtitle">
+      Ofrecemos soluciones integrales de tecnologia para impulsar la transformacion digital de su empresa
+    </p>
+
+    <div class="services-grid">
+      {services.map((service, i) => (
+        <div class="service-card">
+          <div class="service-number">{String(i + 1).padStart(2, '0')}</div>
+          <h3 class="service-title">{service.title}</h3>
+          <p class="service-description">{service.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: all var(--transition);
+    position: relative;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--color-primary);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-primary);
+    box-shadow: 0 12px 40px rgba(10, 30, 61, 0.1);
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
+  }
+
+  .service-number {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+  }
+
+  .service-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-text-heading);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-description {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

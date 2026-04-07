@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="404 - Página no encontrada | VDS">
+  <Header />
+  <main class="not-found">
+    <div class="container">
+      <h1 class="gradient-text">404</h1>
+      <p>La página que buscas no existe.</p>
+      <a href="/" class="back-link">Volver al inicio</a>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .not-found {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 8rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
+    color: white;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .back-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+  }
+</style>
