@@ -19,16 +19,9 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo "Checking out branch: ${env.GIT_BRANCH ?: 'main'}"
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/main']],
-                    userRemoteConfigs: [[
-                        url: 'git@github.com:Bymatt10/vds-landing.git',
-                        credentialsId: 'github-ssh-key'
-                    ]]
-                ])
-                echo "Commit: ${env.GIT_COMMIT}"
+                checkout scm
+                echo "Branch : ${env.GIT_BRANCH}"
+                echo "Commit : ${env.GIT_COMMIT}"
             }
         }
 
