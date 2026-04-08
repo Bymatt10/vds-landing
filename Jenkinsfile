@@ -50,7 +50,7 @@ pipeline {
                 sh '''
                     for i in 1 2 3 4 5; do
                         echo "Attempt $i / 5 ..."
-                        if docker exec ${CONTAINER_NAME} wget -qO /dev/null http://localhost/; then
+                        if docker exec ${CONTAINER_NAME} wget -qO /dev/null http://127.0.0.1/; then
                             echo "Health check PASSED."
                             exit 0
                         fi
