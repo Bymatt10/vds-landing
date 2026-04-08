@@ -128,6 +128,24 @@ const partners = [
   @media (max-width: 640px) {
     .partners-grid {
       grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .partner-card {
+      padding: 1.5rem 1rem;
+      min-height: 110px;
+    }
+
+    .partner-logo {
+      max-width: 90px;
+      max-height: 32px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .partners-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
     }
   }
 </style>

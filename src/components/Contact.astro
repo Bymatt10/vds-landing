@@ -238,11 +238,30 @@
   @media (max-width: 768px) {
     .contact-grid {
       grid-template-columns: 1fr;
-      gap: 2.5rem;
+      gap: 2rem;
     }
 
     .contact-title {
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .contact-form-wrapper {
+      padding: 1.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .contact-form-wrapper {
+      padding: 1.25rem 1rem;
+    }
+
+    .info-items {
+      gap: 1.25rem;
+    }
+
+    .form-submit {
+      min-height: 48px;
+      font-size: 0.95rem;
     }
   }
 </style>

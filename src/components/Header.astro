@@ -21,13 +21,14 @@ const navLinks = [
       ))}
     </nav>
 
-    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
       <span></span>
       <span></span>
       <span></span>
     </button>
   </div>
 </header>
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 
 <style>
   .header {
@@ -109,19 +110,44 @@ const navLinks = [
   .menu-toggle {
     display: none;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 5px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 4px;
+    padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 6px;
+    transition: background var(--transition);
+  }
+
+  .menu-toggle:hover {
+    background: var(--color-bg-elevated);
   }
 
   .menu-toggle span {
     display: block;
-    width: 24px;
+    width: 22px;
     height: 2px;
     background: var(--color-text-heading);
     transition: var(--transition);
+    border-radius: 2px;
+  }
+
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  .nav-overlay.visible {
+    opacity: 1;
   }
 
   @media (max-width: 768px) {
@@ -129,19 +155,25 @@ const navLinks = [
       display: flex;
     }
 
+    .nav-overlay {
+      display: block;
+    }
+
     .nav {
       position: fixed;
       top: 0;
       right: -100%;
-      width: 280px;
-      height: 100vh;
+      width: min(300px, 85vw);
+      height: 100dvh;
       background: #ffffff;
       flex-direction: column;
-      padding: 5rem 2rem 2rem;
-      gap: 1.5rem;
+      padding: 4.5rem 1.75rem 2rem;
+      gap: 0.25rem;
       transition: right var(--transition);
       border-left: 1px solid var(--color-border);
-      box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+      box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+      z-index: 100;
+      overflow-y: auto;
     }
 
     .nav.open {
@@ -149,8 +181,32 @@ const navLinks = [
     }
 
     .nav-link {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: var(--color-text-heading);
+      padding: 0.85rem 0.75rem;
+      border-radius: 8px;
+      transition: background var(--transition), color var(--transition);
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-link:hover {
+      background: var(--color-bg-elevated);
+    }
+
+    .nav-link::after {
+      display: none;
+    }
+
+    .logo-text {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .logo-text {
+      display: none;
     }
   }
 </style>
@@ -159,18 +215,37 @@ const navLinks = [
   const header = document.getElementById('header');
   const nav = document.getElementById('nav');
   const toggle = document.getElementById('menu-toggle');
+  const overlay = document.getElementById('nav-overlay');
 
   window.addEventListener('scroll', () => {
     header?.classList.toggle('scrolled', window.scrollY > 50);
   });
 
+  function openMenu() {
+    nav?.classList.add('open');
+    overlay?.classList.add('visible');
+    toggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    nav?.classList.remove('open');
+    overlay?.classList.remove('visible');
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
   toggle?.addEventListener('click', () => {
-    nav?.classList.toggle('open');
+    nav?.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  overlay?.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
   });
 
   nav?.querySelectorAll('.nav-link').forEach((link) => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('open');
-    });
+    link.addEventListener('click', closeMenu);
   });
 </script>

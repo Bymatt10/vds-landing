@@ -128,11 +128,28 @@ const currentYear = new Date().getFullYear();
   @media (max-width: 768px) {
     .footer-top {
       flex-direction: column;
-      gap: 2.5rem;
+      gap: 2rem;
     }
 
     .footer-links {
-      gap: 2.5rem;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-top {
+      gap: 1.75rem;
+    }
+
+    .footer-links {
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .footer-col a {
+      min-height: 36px;
+      display: flex;
+      align-items: center;
     }
   }
 </style>
