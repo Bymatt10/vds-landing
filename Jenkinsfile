@@ -44,12 +44,11 @@ pipeline {
 
         stage('Health Check') {
             steps {
-                echo "Verifying service on localhost:${HOST_PORT}"
+                echo "Verifying container ${CONTAINER_NAME} is up and serving"
                 sh '''
                     for i in 1 2 3 4 5; do
                         echo "Attempt $i / 5 ..."
-                        if curl --silent --fail --max-time 10 http://localhost:${HOST_PORT}; then
-                            echo ""
+                        if docker exec ${CONTAINER_NAME} wget -qO /dev/null http://localhost/; then
                             echo "Health check PASSED."
                             exit 0
                         fi
