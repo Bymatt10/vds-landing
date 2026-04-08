@@ -1,44 +1,168 @@
 ---
+interface Breadcrumb {
+  name: string;
+  item: string;
+}
+
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   type?: string;
+  breadcrumbs?: Breadcrumb[];
+  pageSchema?: object | object[];
+  noindex?: boolean;
 }
 
 const {
   title,
-  description = 'Value Driven Solutions - Soluciones tecnologicas de vanguardia para Centro America. Migracion a la nube, ciberseguridad, Microsoft 365, consultoria TI y soporte 24/7.',
+  description = 'Value Driven Solutions (VDS) — Empresa de soluciones tecnologicas en Centro America. Migracion a la nube, ciberseguridad, Microsoft 365, consultoria TI, infraestructura datacenter y soporte tecnico 24/7 en Costa Rica, El Salvador, Nicaragua y Guatemala.',
   image = '/og-image.png',
+  imageAlt = 'Value Driven Solutions — Soluciones tecnologicas para Centro America',
   type = 'website',
+  breadcrumbs,
+  pageSchema,
+  noindex = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(image, Astro.site);
 
-const jsonLd = {
-  '@context': 'https://schema.org',
+// ── Structured Data ────────────────────────────────────────────────────────
+const organizationSchema = {
   '@type': 'Organization',
+  '@id': 'https://vdstecnologia.com/#organization',
   name: 'Value Driven Solutions',
+  alternateName: ['VDS', 'VDS Tecnologia'],
   url: 'https://vdstecnologia.com',
-  description: description,
+  logo: {
+    '@type': 'ImageObject',
+    '@id': 'https://vdstecnologia.com/#logo',
+    url: 'https://vdstecnologia.com/og-image.png',
+    width: 1200,
+    height: 630,
+  },
+  image: 'https://vdstecnologia.com/og-image.png',
+  description:
+    'Empresa especializada en soluciones tecnologicas de vanguardia para la transformacion digital de empresas en Centro America. Servicios de migracion a la nube, ciberseguridad, Microsoft 365, consultoria TI, infraestructura datacenter y soporte 24/7.',
   areaServed: [
     { '@type': 'Country', name: 'Costa Rica' },
     { '@type': 'Country', name: 'El Salvador' },
     { '@type': 'Country', name: 'Nicaragua' },
     { '@type': 'Country', name: 'Guatemala' },
   ],
-  serviceType: [
-    'Cloud Migration',
+  knowsAbout: [
+    'Cloud Computing',
+    'Migracion a la Nube',
     'Microsoft 365',
-    'Cybersecurity',
-    'IT Consulting',
-    'Data Protection',
-    'Datacenter Infrastructure',
-    'Networks and Telecommunications',
-    'IT Training',
-    '24/7 Technical Support',
+    'Ciberseguridad',
+    'Consultoria TI',
+    'Proteccion de Datos',
+    'Infraestructura Datacenter',
+    'Redes y Telecomunicaciones',
+    'Capacitacion TI',
+    'Soporte Tecnico',
+    'AWS',
+    'Google Cloud',
+    'Nutanix',
+    'VMware',
+    'Veeam',
   ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Servicios de TI',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Migracion a la Nube' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Licenciamiento Microsoft 365' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Ciberseguridad Avanzada' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Consultoria en Tecnologia' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Proteccion de Datos' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Infraestructura Centros de Datos' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Redes y Telecomunicaciones' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Formacion en TI y Capacitacion' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Soporte Tecnico 24/7' } },
+    ],
+  },
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      availableLanguage: ['Spanish'],
+      areaServed: ['CR', 'SV', 'NI', 'GT'],
+      hoursAvailable: 'Mo-Fr 08:00-17:00',
+    },
+    {
+      '@type': 'ContactPoint',
+      contactType: 'technical support',
+      availableLanguage: ['Spanish'],
+      areaServed: ['CR', 'SV', 'NI', 'GT'],
+      hoursAvailable: 'Mo-Su 00:00-24:00',
+    },
+  ],
+  // Update these with real social profile URLs
+  sameAs: [
+    'https://www.linkedin.com/company/value-driven-solutions',
+  ],
+};
+
+const websiteSchema = {
+  '@type': 'WebSite',
+  '@id': 'https://vdstecnologia.com/#website',
+  url: 'https://vdstecnologia.com',
+  name: 'Value Driven Solutions',
+  description: 'Soluciones tecnologicas de vanguardia para Centro America',
+  publisher: { '@id': 'https://vdstecnologia.com/#organization' },
+  inLanguage: 'es',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://vdstecnologia.com/?s={search_term_string}',
+    },
+    'query-input': 'required name=search_term_string',
+  },
+};
+
+const webPageSchema = {
+  '@type': 'WebPage',
+  '@id': `${canonicalURL}#webpage`,
+  url: canonicalURL,
+  name: title,
+  description: description,
+  isPartOf: { '@id': 'https://vdstecnologia.com/#website' },
+  about: { '@id': 'https://vdstecnologia.com/#organization' },
+  inLanguage: 'es',
+  dateModified: new Date().toISOString(),
+};
+
+const breadcrumbSchema = breadcrumbs
+  ? {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonicalURL}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://vdstecnologia.com' },
+        ...breadcrumbs.map((bc, i) => ({
+          '@type': 'ListItem',
+          position: i + 2,
+          name: bc.name,
+          item: bc.item,
+        })),
+      ],
+    }
+  : null;
+
+const graphNodes = [
+  organizationSchema,
+  websiteSchema,
+  webPageSchema,
+  breadcrumbSchema,
+  ...(Array.isArray(pageSchema) ? pageSchema : pageSchema ? [pageSchema] : []),
+].filter(Boolean);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': graphNodes,
 };
 ---
 
@@ -47,29 +171,59 @@ const jsonLd = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a1e3d" />
+
+    <!-- Resource hints -->
+    <link rel="preconnect" href="https://rsms.me" crossorigin />
+    <link rel="dns-prefetch" href="https://rsms.me" />
+    <link rel="dns-prefetch" href="https://flagcdn.com" />
 
     <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
-    <meta name="robots" content="index, follow" />
+    {noindex
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    }
     <meta name="author" content="Value Driven Solutions" />
-    <meta name="keywords" content="soluciones tecnologicas, centro america, migracion nube, ciberseguridad, Microsoft 365, consultoria TI, datacenter, soporte tecnico, Costa Rica, El Salvador, Nicaragua, Guatemala" />
+    <meta name="keywords" content="soluciones tecnologicas centro america, consultoria ti costa rica, migracion nube costa rica, microsoft 365 costa rica, ciberseguridad empresas, soporte tecnico empresas, infraestructura datacenter, redes telecomunicaciones, transformacion digital, aws partner costa rica, vds tecnologia, value driven solutions" />
 
-    <!-- Open Graph -->
+    <!-- Geo targeting -->
+    <meta name="geo.region" content="CR" />
+    <meta name="geo.placename" content="San Jose, Costa Rica" />
+    <meta name="language" content="es" />
+
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+    <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={ogImageURL} />
     <meta property="og:site_name" content="Value Driven Solutions" />
     <meta property="og:locale" content="es_CR" />
+    <meta property="og:locale:alternate" content="es_SV" />
+    <meta property="og:locale:alternate" content="es_NI" />
+    <meta property="og:locale:alternate" content="es_GT" />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
 
-    <!-- Twitter Card -->
+    <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+
+    <!-- hreflang: regional targeting for Central America -->
+    <link rel="alternate" hreflang="es" href={canonicalURL} />
+    <link rel="alternate" hreflang="es-CR" href={canonicalURL} />
+    <link rel="alternate" hreflang="es-SV" href={canonicalURL} />
+    <link rel="alternate" hreflang="es-NI" href={canonicalURL} />
+    <link rel="alternate" hreflang="es-GT" href={canonicalURL} />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

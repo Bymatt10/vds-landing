@@ -65,11 +65,38 @@ const stats = [
   { value: '4', label: 'Paises en Centro America' },
   { value: '24/7', label: 'Soporte continuo' },
 ];
+
+// Structured data: ItemList of services for rich results
+const servicesItemListSchema = {
+  '@type': 'ItemList',
+  '@id': 'https://vdstecnologia.com/productos-y-servicios#servicios',
+  name: 'Servicios de TI — Value Driven Solutions',
+  description: 'Portafolio completo de servicios tecnologicos para empresas en Centro America',
+  numberOfItems: services.length,
+  itemListElement: services.map((s, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Service',
+      name: s.title,
+      description: s.description,
+      provider: {
+        '@type': 'Organization',
+        name: 'Value Driven Solutions',
+        url: 'https://vdstecnologia.com',
+      },
+      areaServed: 'Centro America',
+      serviceType: s.category,
+    },
+  })),
+};
 ---
 
 <Layout
-  title="Productos y Servicios de TI | VDS - Value Driven Solutions"
-  description="Migracion a la nube, Microsoft 365, ciberseguridad avanzada, consultoria tecnologica, proteccion de datos, infraestructura datacenter, redes y soporte tecnico 24/7 en Centro America."
+  title="Productos y Servicios de TI | Nube, M365, Ciberseguridad — VDS Centro America"
+  description="Portafolio completo de servicios TI de VDS: migracion a la nube, Microsoft 365, ciberseguridad avanzada, consultoria tecnologica, proteccion de datos, infraestructura datacenter, redes y soporte tecnico 24/7 en Costa Rica, El Salvador, Nicaragua y Guatemala."
+  breadcrumbs={[{ name: 'Productos y Servicios', item: 'https://vdstecnologia.com/productos-y-servicios' }]}
+  pageSchema={servicesItemListSchema}
 >
   <Header />
   <main>

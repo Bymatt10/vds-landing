@@ -8,9 +8,52 @@ import Locations from '../components/Locations.astro';
 import Partners from '../components/Partners.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+
+// FAQ structured data — boosts chances of Google FAQ rich results
+const faqSchema = {
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '¿Que servicios de TI ofrece VDS en Costa Rica?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Value Driven Solutions ofrece migracion a la nube, licenciamiento Microsoft 365, ciberseguridad avanzada, consultoria tecnologica, proteccion de datos, infraestructura de centros de datos, redes y telecomunicaciones, capacitacion en TI y soporte tecnico 24/7 en Costa Rica y toda Centro America.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿En que paises de Centro America opera VDS?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Value Driven Solutions opera en Costa Rica (San Jose), El Salvador (San Salvador), Nicaragua (Managua) y Guatemala (Ciudad de Guatemala), brindando soporte local con experiencia global.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿VDS es partner de Microsoft y AWS?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Si, VDS trabaja con los principales fabricantes tecnologicos incluyendo AWS, Microsoft, Google, Nutanix, VMware, RedHat, Veeam, HPE, DELL, Cisco y Exagrid, lo que garantiza soluciones certificadas y soporte especializado.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Como contactar a VDS para una consultoria?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Puede contactar a Value Driven Solutions a traves del formulario en nuestro sitio web vdstecnologia.com. Nuestro equipo de especialistas responde en horario de 8:00 a.m. a 5:00 p.m. y el soporte tecnico esta disponible 24/7.',
+      },
+    },
+  ],
+};
 ---
 
-<Layout title="VDS - Value Driven Solutions | Soluciones Tecnológicas Centro América">
+<Layout
+  title="VDS Tecnologia | Soluciones TI: Nube, Ciberseguridad y M365 en Centro America"
+  description="Value Driven Solutions — empresa de soluciones tecnologicas en Costa Rica, El Salvador, Nicaragua y Guatemala. Migracion a la nube, Microsoft 365, ciberseguridad, consultoria TI e infraestructura datacenter. Partners AWS, Microsoft y Google."
+  pageSchema={faqSchema}
+>
   <Header />
   <main>
     <Hero />
