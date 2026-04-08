@@ -39,6 +39,8 @@ pipeline {
                 echo "Starting new container"
                 sh 'docker compose -f ${COMPOSE_FILE} up -d'
                 sh 'sleep 5'
+                echo "Container logs (last 20 lines):"
+                sh 'docker logs --tail 20 ${CONTAINER_NAME} || true'
             }
         }
 
