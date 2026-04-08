@@ -4,4 +4,4 @@ services:
     container_name: vds-landing
     restart: unless-stopped
     ports:
-      - "3000:80"
+      - "3002:80"

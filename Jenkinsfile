@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME     = 'vds-landing'
         CONTAINER_NAME = 'vds-landing'
-        HOST_PORT      = '3000'
+        HOST_PORT      = '3002'
         COMPOSE_FILE   = 'docker-compose.yml'
     }
 
